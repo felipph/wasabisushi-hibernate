@@ -10,7 +10,7 @@ CREATE TABLE `cliente` (
   `n_cartao` varchar(45) NOT NULL,
   PRIMARY KEY (`idCliente`),
   UNIQUE KEY `cpf_UNIQUE` (`cpf`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `produto`;
 CREATE TABLE `produto` (
@@ -20,7 +20,7 @@ CREATE TABLE `produto` (
   `descricao` varchar(255) DEFAULT NULL,
   `preco` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idProduto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `pedido`;
 CREATE TABLE `pedido` (
@@ -33,6 +33,7 @@ CREATE TABLE `pedido` (
   KEY `idProduto_idx` (`idProduto`),
   CONSTRAINT `idCliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`),
   CONSTRAINT `idProduto` FOREIGN KEY (`idProduto`) REFERENCES `produto` (`idProduto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 GRANT ALL ON *.* TO 'root'@'%';
+

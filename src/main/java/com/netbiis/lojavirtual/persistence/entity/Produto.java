@@ -101,4 +101,15 @@ public class Produto implements java.io.Serializable {
 		this.pedidos = pedidos;
 	}
 
+	@Override
+	public String toString() {
+		return "Produto{" +
+				"idProduto=" + idProduto +
+				", nome='" + nome + '\'' +
+				", categoria='" + categoria + '\'' +
+				", descricao='" + descricao + '\'' +
+				", preco='" + preco + '\'' +
+				", pedidos=" + pedidos +
+				'}';
+	}
 }
