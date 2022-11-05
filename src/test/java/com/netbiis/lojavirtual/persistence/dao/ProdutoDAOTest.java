@@ -9,12 +9,12 @@ public class ProdutoDAOTest extends TestCase {
     ProdutoDAO produtoDAO = new ProdutoDAO();
 
     public void testGetAllProduto() {
-        List<Produto> allProduto = produtoDAO.getAllProduto();
+        List<Produto> allProduto = produtoDAO.getAll();
         System.out.println(allProduto);
     }
 
     public void testGetProdutoById() {
-        Produto produtoById = produtoDAO.getProdutoById(1);
+        Produto produtoById = produtoDAO.getById(1);
         System.out.println(produtoById);
     }
 }

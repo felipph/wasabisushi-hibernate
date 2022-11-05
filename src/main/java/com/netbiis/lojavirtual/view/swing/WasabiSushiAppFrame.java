@@ -1,6 +1,7 @@
 package com.netbiis.lojavirtual.view.swing;
 
 import com.netbiis.lojavirtual.business.ProdutoNegocio;
+import com.netbiis.lojavirtual.persistence.entity.Cliente;
 import com.netbiis.lojavirtual.persistence.entity.Produto;
 
 import java.awt.*;
@@ -9,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -41,8 +43,8 @@ public class WasabiSushiAppFrame extends JFrame{
 	// CRIAR CLASSE PROMOÇÃO ENTRADAS TEMAKI ESPECIAL E HOLL WASABI
 	
 
-	public WasabiSushiAppFrame() {
-		super("WASABI SUSHI APP");
+	public WasabiSushiAppFrame(Cliente clienteSelecionado) {
+		super("Cliente: " + clienteSelecionado.getNome());
 		produtoNegocio = new ProdutoNegocio();
 		container = getContentPane();
 		barra = new JMenuBar();
@@ -105,22 +107,21 @@ public class WasabiSushiAppFrame extends JFrame{
 		panel2.add(botaoCliente);
 		panel2.add(botaoLimpar);
 		container.add(panel2);
-//		container.add(tabela);
-
 		setJMenuBar(barra);
 		
 		
 		setSize(500, 400);
 		setLayout(new GridLayout(2,1));
 		setVisible(true);
-		
-		botaoCliente.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-//				ClienteFrame clienteFrame = new ClienteFrame();
-			}
+		List<Produto> produtos = produtoNegocio.getAllProdutos();
+		List<String> labels = produtos.stream().map(Produto::getNome).toList();
+		JComboBox comboBox = new JComboBox(labels.toArray());
+		comboBox.setSelectedIndex(1);
+		botaoCliente.addActionListener(e-> {
+			JOptionPane.showMessageDialog(this, comboBox, "Selecione o Cliente",
+					JOptionPane.QUESTION_MESSAGE);
+			System.out.println("Selecionado: " + produtos.get(comboBox.getSelectedIndex()));
 		});
-
 	}
 	
 	private void limparTabela() {

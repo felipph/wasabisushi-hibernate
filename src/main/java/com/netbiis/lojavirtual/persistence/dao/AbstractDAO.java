@@ -49,5 +49,8 @@ public abstract class AbstractDAO<Entidade> {
     public Entidade getById(Integer id) {
         return em.find(this.type, id);
     }
+    public void create(Entidade item) {
+        em.merge(item);
+    }
 }
 

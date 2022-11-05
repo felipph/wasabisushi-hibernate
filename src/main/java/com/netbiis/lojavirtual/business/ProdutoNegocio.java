@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -20,7 +19,7 @@ public class ProdutoNegocio {
     }
 
     public Map<String, List<Produto>> getAllProdutoByCategoria(){
-        List<Produto> produtos = produtoDAO.getAllProduto();
+        List<Produto> produtos = getAllProdutos();
         Map<String, List<Produto>> produtosPorCategoria = new HashMap<>();
 //        produtosPorCategoria = produtos
 //                .stream()
@@ -33,6 +32,10 @@ public class ProdutoNegocio {
         return produtosPorCategoria;
 
 
+    }
+
+    public List<Produto> getAllProdutos(){
+      return produtoDAO.getAll();
     }
 
 
